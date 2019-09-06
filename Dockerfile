@@ -38,9 +38,9 @@ RUN curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 WORKDIR /root
 
 # ARG CACHE_DATE=2016-01-01
-RUN git clone https://github.com/adrianoviana87/dot-files.git
+RUN git clone https://github.com/adrianoviana87/vim-pure.git
 
-RUN echo 'execute "source " . fnamemodify(expand("$HOME") . "/dot-files/vim-pure/settings.vim", ":p")' > /root/.config/nvim/init.vim
+RUN echo 'execute "source " . fnamemodify(expand("$HOME") . "/vim-pure/settings.vim", ":p")' > /root/.config/nvim/init.vim
 
 RUN nvim +PlugInstall +qall
 
