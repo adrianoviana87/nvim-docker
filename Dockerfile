@@ -10,6 +10,8 @@ RUN pip2 install neovim
 RUN pip install neovim
 RUN npm install -g neovim
 RUN apt install curl -y
+RUN apt install wget -y
+RUN apt install jq -y
 RUN apt install git -y
 RUN npm install -g eslint
 RUN npm install -g yarn
@@ -46,7 +48,16 @@ RUN nvim +PlugInstall +qall
 
 RUN nvim -c 'CocInstall -sync coc-lists coc-json coc-html coc-css coc-yaml coc-tsserver coc-eslint coc-docker coc-omnisharp|q'
 
+WORKDIR /root
+
+COPY ./install-rg.sh .
+
+RUN chmod +x ./install-rg.sh
+
+RUN ./install-rg.sh
+
 RUN mkdir -p /var/nvim-edit
+
 WORKDIR /var/nvim-edit
 
 CMD ["nvim", "/var/nvim-edit"]
